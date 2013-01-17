@@ -112,7 +112,7 @@ class LinkedinAPI(object):
 
         return request_tokens
 
-    def get_access_token(self, oauth_verifier, scope):
+    def get_access_token(self, oauth_verifier):
         """ After being returned from the callback, call this.
 
             l = LinkedinAPI(YOUR_CONFIG)
@@ -164,5 +164,5 @@ class LinkedinAPI(object):
 
     def get_profile(self, endpoint='~', fields='', params=''):
         if fields:
-            fields = '(%s)' % ','.join(fields)
+            fields = ','.join(fields)
         return self.get('people/%s' % endpoint, fields, params)
