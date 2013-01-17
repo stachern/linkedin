@@ -51,6 +51,7 @@ class Profile(object):
     def __init__(self, *args, **kwargs):
         self.first_name = kwargs.get('firstName')
         self.last_name = kwargs.get('lastName')
+        self.email = kwargs.get('emailAddress')
         self.distance = kwargs.get('distance')
         self.formatted_name = kwargs.get('formattedName')
         self.headline = kwargs.get('headline')
