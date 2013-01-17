@@ -4,6 +4,7 @@
 from models import Profile
 
 __author__ = 'Mike Helmick <mikehelmick@me.com>, Stanislau Charniakou <stas.cherniakov@gmail.com>'
+__version__ = '0.2.0'
 
 import urllib
 
