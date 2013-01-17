@@ -2,8 +2,7 @@
 
 """ LinkedIn """
 
-__author__ = 'Mike Helmick <mikehelmick@me.com>'
-__version__ = '0.1.2'
+__author__ = 'Mike Helmick <mikehelmick@me.com>, Stanislau Charniakou <stas.cherniakov@gmail.com>'
 
 import urllib
 
