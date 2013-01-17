@@ -1,6 +1,7 @@
 #!/usr/bin/evn python
 
 """ LinkedIn """
+from models import Profile
 
 __author__ = 'Mike Helmick <mikehelmick@me.com>, Stanislau Charniakou <stas.cherniakov@gmail.com>'
 
@@ -164,4 +165,5 @@ class LinkedinAPI(object):
     def get_profile(self, endpoint='~', fields='', params=''):
         if fields:
             fields = ','.join(fields)
-        return self.get('people/%s' % endpoint, fields, params)
+        raw_profile = self.get('people/%s' % endpoint, fields, params)
+        return Profile(**raw_profile)
