@@ -83,7 +83,7 @@ class LinkedinAPI(object):
             # Unauthenticated requests (for LinkedIn calls available to public)
             self.client = httplib2.Http(**client_args)
 
-    def get_authentication_tokens(self):
+    def get_authentication_tokens(self, scope=None):
         """ So, you want to get an authentication url?
 
             l = LinkedinAPI(YOUR_CONFIG)
@@ -91,6 +91,10 @@ class LinkedinAPI(object):
             auth_url = auth_props['auth_url']
             print auth_url
         """
+
+        #check if custom scope defined
+        if scope:
+            self.request_token_url = '%s?scope=%s' % (self.request_token_url, '+'.join(scope))
 
         resp, content = self.client.request(self.request_token_url, 'GET')
 
@@ -108,7 +112,7 @@ class LinkedinAPI(object):
 
         return request_tokens
 
-    def get_access_token(self, oauth_verifier):
+    def get_access_token(self, oauth_verifier, scope):
         """ After being returned from the callback, call this.
 
             l = LinkedinAPI(YOUR_CONFIG)
@@ -157,3 +161,8 @@ class LinkedinAPI(object):
     def post(self, endpoint, fields='', params=None):
         params = params or {}
         return self.api_request(endpoint, method='POST', fields=fields, params=params)
+
+    def get_profile(self, endpoint='~', fields='', params=''):
+        if fields:
+            fields = '(%s)' % ','.join(fields)
+        return self.get('people/%s' % endpoint, fields, params)
